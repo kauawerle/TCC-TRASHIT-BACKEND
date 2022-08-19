@@ -1,9 +1,10 @@
 import Sequelize from 'sequelize';
-const database = require('./db');
+import { db } from '../connection';
 
-const User = database.define('user', {
+const UserModel = db.define('user', {
 	id: {
-		type: Sequelize.INTEGER,
+		type: Sequelize.UUID,
+		defaultValue: Sequelize.UUIDV4,
 		autoIncrement: true,
 		allowNull: false,
 		primaryKey: true
@@ -21,7 +22,7 @@ const User = database.define('user', {
 
 	cnpj: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: true
 	},
 
 	city: {
@@ -46,4 +47,4 @@ const User = database.define('user', {
 
 });
 
-export { User };
+export { UserModel };

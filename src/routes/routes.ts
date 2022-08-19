@@ -2,18 +2,18 @@ import express from 'express';
 import multerConfig from '../config/multer';
 import multer from 'multer';
 import { Router } from 'express';
-import CollectorController  from '../controllers/CollectorController/CollectorController';
-
-const collectorRoutes = new CollectorController();
+import UserController from '../controllers/UserController/UserController';
 
 const routes = Router();
 
-routes.post("/", (req, res) => {
-    return collectorRoutes.create(req, res);
-})
+routes.post("/user", UserController.create)
 
-routes.get("/", (req, res) => {
-    return collectorRoutes.list(req, res);
-})
+routes.get("/user", UserController.findAll)
+
+routes.get("/user/:id", UserController.findOne)
+
+routes.put("/user/:id", UserController.update)
+
+routes.delete("/user/:id", UserController.destroy)
 
 export default routes;
