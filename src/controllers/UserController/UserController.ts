@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { v4 as V4Options } from "uuid";
+import { v4 } from "uuid";
 import { UserModel } from "../../database/model/user";
 
 class UserController {
@@ -10,28 +10,38 @@ class UserController {
 
 	}
 	async create(req: Request, res: Response) {
-		const {
-			name,
-			email,
-			password,
-			cnpj,
-			city,
-			uf,
-			number
-		} = req.body;
+		try {
+			const {
+				name,
+				email,
+				password,
+				cnpj,
+				city,
+				uf,
+				number
+			} = req.body;
 
-		const user = await UserModel.create({
-			id: V4Options(),
-			name,
-			email,
-			password,
-			cnpj,
-			city,
-			uf,
-			number
-		});
+			const user = await UserModel.create({
+				id: v4(),
+				name,
+				email,
+				password,
+				cnpj,
+				city,
+				uf,
+				number
+			});
+			console.log(v4());
+			
 
-		return res.status(201).json(user);
+			return res.status(201).json(user);
+		}
+		catch (err) {
+			console.log(v4());
+
+			console.log(err);
+			return res.status(500).json(err);
+		}
 	}
 	async update(req: Request, res: Response) {
 

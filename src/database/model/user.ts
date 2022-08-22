@@ -1,42 +1,41 @@
-import Sequelize from 'sequelize';
+import Sequelize, { DataTypes } from 'sequelize';
 import { db } from '../connection';
 
-const UserModel = db.define('user', {
+const UserModel = db.define('tb_users', {
 	id: {
-		type: Sequelize.UUID,
-		defaultValue: Sequelize.UUIDV4,
-		autoIncrement: true,
+		type: DataTypes.UUID,
+		defaultValue: DataTypes.UUIDV4,
 		allowNull: false,
 		primaryKey: true
 	},
 
 	name: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(200),
 		allowNull: false
 	},
 
 	email: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(200),
 		allowNull: false
 	},
 
 	cnpj: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(200),
 		allowNull: true
 	},
 
 	city: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(200),
 		allowNull: false
 	},
 
 	uf: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(2),
 		allowNull: false
 	},
 
 	number: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING(18),
 		allowNull: false
 	},
 
@@ -44,7 +43,6 @@ const UserModel = db.define('user', {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
-
 });
 
 export { UserModel };
