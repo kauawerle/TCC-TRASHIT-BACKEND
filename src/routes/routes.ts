@@ -10,7 +10,7 @@ routes.post("/user", UserController.create)
 
 routes.get("/user", UserController.findAll)
 
-routes.get("/user/:id", UserController.findOne)
+routes.get("/user/:id", UserController.findById)
 
 routes.put("/user/:id", UserController.update)
 

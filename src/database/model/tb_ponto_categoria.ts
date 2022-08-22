@@ -1,15 +1,20 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import { db } from '../connection';
+import { CategoriesModel } from './tb_categoria';
 
-const CategoriesModel = db.define('tb_categorias', {
+const PontoCategoriesModel = db.define('tb_ponto_categorias', {
 	id: {
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4,
 		allowNull: false,
 		primaryKey: true
 	},
-	image: {
-		type: DataTypes.BLOB('long'),
+	cod_categoria: {
+		type: DataTypes.UUID,
+		references: {
+			model: CategoriesModel,
+			key: 'id',
+		}
 	},
 	title: {
 		type: DataTypes.STRING(100),
@@ -19,4 +24,4 @@ const CategoriesModel = db.define('tb_categorias', {
 	
 });
 
-export { CategoriesModel };
+export { PontoCategoriesModel };
