@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import multer from "multer";
 import { v4 } from "uuid";
 import { CategoriesModel } from "../../database/model/tb_categoria";
+import fs from 'fs'
 
 class CategoryController {
 	async findAll(req: Request, res: Response) {
@@ -12,16 +12,14 @@ class CategoryController {
 	}
 	async create(req: Request, res: Response) {
 		try {
+			var __basedir: string;
 			const {title} = req.body;
-			const storage = multer.memoryStorage();
-
-			const upload = multer({storage: storage});
+			// const {imageData} = req.file.mimetype;
 			
-
 			const category = await CategoriesModel.create({
 				id: v4(),
-				title,
-				imageData: req.file.buffer, 
+				title, 
+				// imageData
 			});
 			
 			return res.status(200).json(category);

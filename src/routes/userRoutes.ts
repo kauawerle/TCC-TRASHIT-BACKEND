@@ -7,10 +7,12 @@ userRoutes.post("", UserController.create)
 
 userRoutes.get("", UserController.findAll)
 
-userRoutes.get(":id", UserController.findById)
+userRoutes.get("/authent/:email", UserController.findByEmail)
 
-userRoutes.put(":id", UserController.update)
+userRoutes.get("/:id", UserController.findById)
 
-userRoutes.delete(":id", UserController.destroy)
+userRoutes.put("/:id", UserController.update)
+
+userRoutes.delete("/:id", UserController.destroy)
 
 export default userRoutes;

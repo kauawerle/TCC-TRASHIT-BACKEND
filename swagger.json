@@ -1,9 +1,9 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a simple example NodeJS API project to demonstrate Swagger Documentation",
+    "description": "This is a API project in TrashIt Project",
     "version": "1.0.0",
-    "title": "Tasks API",
+    "title": "TrashIt",
     "contact": {
       "email": "abc@gmail.com"
     },

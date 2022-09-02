@@ -18,7 +18,10 @@ const UserModel = db.define('tb_users', {
 		type: Sequelize.STRING(200),
 		allowNull: false
 	},
-
+	adm: {
+		type: Sequelize.BOOLEAN,
+		allowNull: false
+	},
 	cnpj: {
 		type: Sequelize.STRING(200),
 		allowNull: true

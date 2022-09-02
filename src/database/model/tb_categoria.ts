@@ -1,7 +1,7 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import { db } from '../connection';
 
-const CategoriesModel = db.define('tb_categoria', {
+const CategoriesModel = db.define('tb_categorias', {
 	id: {
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4,
