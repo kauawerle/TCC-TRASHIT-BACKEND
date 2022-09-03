@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
+
 import { UserModel } from "../../database/model/user";
 
 class UserController {
@@ -23,12 +24,27 @@ class UserController {
 
 		}
 	}
+	async findByEmail(req: Request, res: Response) {
+		try {
+			const { email, password } = req.params;
+			UserModel.findOne({ where: { email: email, password: password} })
+				.then((result) => {
+
+					res.status(200).json(result)
+				});
+		} catch (err) {
+			throw err
+
+		}
+	}
+
 	async create(req: Request, res: Response) {
 		try {
 			const {
 				name,
 				email,
 				password,
+				adm,
 				cnpj,
 				city,
 				uf,
@@ -40,6 +56,7 @@ class UserController {
 				name,
 				email,
 				password,
+				adm,
 				cnpj,
 				city,
 				uf,
@@ -58,6 +75,7 @@ class UserController {
 				name,
 				email,
 				password,
+				adm,
 				cnpj,
 				city,
 				uf,
@@ -68,6 +86,7 @@ class UserController {
 				name,
 				email,
 				password,
+				adm,
 				cnpj,
 				city,
 				uf,
@@ -92,13 +111,12 @@ class UserController {
 					id: req.params.id
 				}
 			}).then(result => {
-				res.status(200).json({result: 'deletado'});
+				res.status(200).json({ result: 'deletado' });
 			})
 		} catch (err) {
 			return res.status(500).json(err);
 		}
 	}
-
 
 }
 
