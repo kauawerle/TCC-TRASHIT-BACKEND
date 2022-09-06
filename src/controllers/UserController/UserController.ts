@@ -26,7 +26,8 @@ class UserController {
 	}
 	async findByEmail(req: Request, res: Response) {
 		try {
-			const { email, password } = req.params;
+			const { email, password } = req.query;
+			console.log(email, password);
 			UserModel.findOne({ where: { email: email, password: password} })
 				.then((result) => {
 
@@ -50,6 +51,17 @@ class UserController {
 				uf,
 				number
 			} = req.body;
+
+			console.log(
+				name,
+				email,
+				password,
+				adm,
+				cnpj,
+				city,
+				uf,
+				number
+			)
 
 			const user = await UserModel.create({
 				id: v4(),

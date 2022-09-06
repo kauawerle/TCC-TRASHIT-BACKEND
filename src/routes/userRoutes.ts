@@ -7,7 +7,7 @@ userRoutes.post("", UserController.create)
 
 userRoutes.get("", UserController.findAll)
 
-userRoutes.get("/authent/:email", UserController.findByEmail)
+userRoutes.get("/authent/", UserController.findByEmail)
 
 userRoutes.get("/:id", UserController.findById)
 
