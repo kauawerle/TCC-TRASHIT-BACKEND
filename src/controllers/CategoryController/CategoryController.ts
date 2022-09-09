@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
 import { CategoriesModel } from "../../database/model/tb_categoria";
-import fs from 'fs'
+import * as Blob from 'blob';
 
 class CategoryController {
 	async findAll(req: Request, res: Response) {
@@ -12,14 +12,12 @@ class CategoryController {
 	}
 	async create(req: Request, res: Response) {
 		try {
-			var __basedir: string;
-			const {title} = req.body;
-			// const {imageData} = req.file.mimetype;
-			
+			const {title, imageData} = req.body;
+
 			const category = await CategoriesModel.create({
 				id: v4(),
 				title, 
-				// imageData
+				imageData
 			});
 			
 			return res.status(200).json(category);

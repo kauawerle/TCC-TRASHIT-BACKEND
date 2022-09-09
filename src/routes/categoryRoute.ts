@@ -2,12 +2,11 @@ import { Router } from 'express';
 import multer from 'multer';
 import CategoryController from '../controllers/CategoryController/CategoryController';
 
-const upload = multer({dest: 'uploads/'});
-
+import uploads from '../config/multer';
 
 const categoryRoutes = Router();
 
-categoryRoutes.post("",  upload.single('image'), CategoryController.create)
+categoryRoutes.post("",  uploads.single('imageData'), CategoryController.create)
 
 categoryRoutes.get("", CategoryController.findAll)
 
