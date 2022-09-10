@@ -27,11 +27,11 @@ class UserController {
 	async findByEmail(req: Request, res: Response) {
 		try {
 			const { email, password } = req.query;
-			console.log(email, password);
 			UserModel.findOne({ where: { email: email, password: password} })
 				.then((result) => {
-
+					result ?
 					res.status(200).json(result)
+					: res.status(500)
 				});
 		} catch (err) {
 			throw err
