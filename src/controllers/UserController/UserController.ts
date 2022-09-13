@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 import { v4 } from "uuid";
 
 import { UserModel } from "../../database/model/user";
@@ -24,18 +24,35 @@ class UserController {
 
 		}
 	}
-	async findByEmail(req: Request, res: Response) {
+	async findByEmail(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { email, password } = req.query;
+
+			if(!email || email === ''){
+				const response = {
+					message: 'É necessário informar um Email.'
+				}
+				res.status(401).send(response)
+				return next(response)
+			}
+
+			if(!password || password === ''){
+				const response = {
+					message: 'É necessário informar uma Senha.'
+				}
+				res.status(401).send(response)
+				return next(response)
+			}
 			UserModel.findOne({ where: { email: email, password: password} })
 				.then((result) => {
 					result ?
 					res.status(200).json(result)
-					: res.status(500)
+					: res.status(401).send('Acesso não autorizado!')
+				return next(res)
+
 				});
 		} catch (err) {
 			throw err
-
 		}
 	}
 
