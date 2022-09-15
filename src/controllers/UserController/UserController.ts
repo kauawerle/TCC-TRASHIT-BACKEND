@@ -45,10 +45,14 @@ class UserController {
 			}
 			UserModel.findOne({ where: { email: email, password: password} })
 				.then((result) => {
+					const response = {
+						message: 'Acesso não autorizado!, verifique seus dados e tente novamente'
+					}
 					result ?
 					res.status(200).json(result)
-					: res.status(401).send('Acesso não autorizado!')
-				return next(res)
+					: 
+					res.status(401).send(response)
+					return next(response)
 
 				});
 		} catch (err) {
