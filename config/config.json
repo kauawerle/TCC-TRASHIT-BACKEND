@@ -1,0 +1,28 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "root",
+    "database": "trash-it",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432" 
+
+  },
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "trash-it",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+
+  },
+  "production": {
+    "username": "postgres",
+    "password": "root",
+    "database": "trash-it",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": "5432"
+  }
+}
