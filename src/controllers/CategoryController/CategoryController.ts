@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
 import { CategoriesModel } from "../../database/model/tb_categoria";
-import * as Blob from 'blob';
 import { db } from "../../database/connection";
 import { Sequelize } from "sequelize/types";
 
