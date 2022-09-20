@@ -12,16 +12,8 @@ class CategoryController {
 	async findAll(req: Request, res: Response) {
 		
 		try {
-			let {id, title, image} = req.body;
-			const categorias = await CategoriesModel.findAll();
-			image = `http://192.168.0.107:3333/uploads/${image}`
-			const sas =	categorias.every((category) => {
-				id: v4(),
-				title,
-				image
-			})
-
-			return res.json(sas);
+			const categories = await CategoriesModel.findAll();
+			res.json(categories);
 		}
 		catch (err) {
 			return res.status(500).json(err);

@@ -1,6 +1,7 @@
-import Sequelize, { DataTypes } from 'sequelize';
+import Sequelize, { DataTypes, QueryTypes } from 'sequelize';
 import { db } from '../connection';
 import { CategoriesModel } from './tb_categoria';
+
 
 const PontoCategoriesModel = db.define('tb_ponto_categorias', {
 	id: {
@@ -19,7 +20,6 @@ const PontoCategoriesModel = db.define('tb_ponto_categorias', {
 	title: {
 		type: DataTypes.STRING(100),
 		allowNull: false,
-		
 	}
 	
 });
