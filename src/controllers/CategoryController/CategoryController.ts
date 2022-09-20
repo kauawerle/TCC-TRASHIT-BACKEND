@@ -14,7 +14,7 @@ class CategoryController {
 		try {
 			let {id, title, image} = req.body;
 			const categorias = await CategoriesModel.findAll();
-			image = `http://192.168.0.107:3333/uploads/${req.file.path}`
+			image = `http://192.168.0.107:3333/uploads/${image}`
 			const sas =	categorias.every((category) => {
 				id: v4(),
 				title,
