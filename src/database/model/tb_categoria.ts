@@ -1,5 +1,6 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import { db } from '../connection';
+import { PontoColetaModel } from './tb_ponto_coleta';
 
 const CategoriesModel = db.define('tb_categorias', {
 	id: {
@@ -26,5 +27,12 @@ const CategoriesModel = db.define('tb_categorias', {
 	}
 	
 });
+
+PontoColetaModel.belongsTo(CategoriesModel, {
+	constraints: true,
+	foreignKey: 'id_category'
+})
+
+PontoColetaModel.belongsTo(CategoriesModel);
 
 export { CategoriesModel };
