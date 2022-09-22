@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import multer from 'multer';
 import CategoryController from '../controllers/CategoryController/CategoryController';
 
 import uploads from '../config/multer';
