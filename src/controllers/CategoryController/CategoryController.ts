@@ -1,9 +1,7 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
 import { CategoriesModel } from "../../database/model/tb_categoria";
-import { db } from "../../database/connection";
-import { QueryTypes } from "sequelize";
-import sequelize  from "sequelize"
+
 class CategoryController {
 	async index(req: Request, res: Response) {
 

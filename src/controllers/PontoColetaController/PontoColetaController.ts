@@ -8,7 +8,7 @@ class CategoryController {
 
 	}
 
-	async findAll(req: Request, res: Response) {		
+	async findAll(req: Request, res: Response) {
 		try {
 			const pontos = await PontoColetaModel.findAll();
 			res.json(pontos);
@@ -29,13 +29,27 @@ class CategoryController {
 	}
 	async create(req: Request, res: Response) {
 		try {
-			const { title } = req.body;
+			const {
+				title,
+				latitude,
+				longitude,
+				street,
+				uf,
+				city,
+				country,
+				image
+			} = req.body;
 
 			const pontos = await PontoColetaModel.create({
 				id: v4(),
 				title,
-				imageDate: `http://192.168.0.107:3333/uploads/${req.file.path}`,
-				
+				image,
+				latitude,
+				longitude,
+				street,
+				uf,
+				city,
+				country
 
 			});
 

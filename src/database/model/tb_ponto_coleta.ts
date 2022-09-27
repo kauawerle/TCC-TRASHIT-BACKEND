@@ -3,7 +3,7 @@ import { db } from '../connection';
 
 
 const PontoColetaModel = db.define('tb_ponto_categorias', {
-	id_ponto_coleta: {
+	id: {
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4,
 		allowNull: false,
