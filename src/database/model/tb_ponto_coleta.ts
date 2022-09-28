@@ -1,8 +1,9 @@
 import Sequelize, { DataTypes,  } from 'sequelize';
 import { db } from '../connection';
+import { PontoCategoriesModel } from './tb_ponto_categoria';
 
 
-const PontoColetaModel = db.define('tb_ponto_categorias', {
+const PontoColetaModel = db.define('tb_ponto_coleta', {
 	id: {
 		type: DataTypes.UUID,
 		defaultValue: DataTypes.UUIDV4,
@@ -42,5 +43,12 @@ const PontoColetaModel = db.define('tb_ponto_categorias', {
 		allowNull: false,
 	}
 });
+
+PontoColetaModel.belongsTo(PontoCategoriesModel, {
+	constraints: true,
+	foreignKey: 'id_ponto',
+});
+
+
 
 export { PontoColetaModel };

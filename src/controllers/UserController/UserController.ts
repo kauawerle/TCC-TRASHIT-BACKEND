@@ -28,7 +28,7 @@ class UserController {
 		try {
 			const { email, password } = req.query;
 
-			if(!email || email === ''){
+			if (!email || email === '') {
 				const response = {
 					message: 'É necessário informar um Email.'
 				}
@@ -36,22 +36,22 @@ class UserController {
 				return next(response)
 			}
 
-			if(!password || password === ''){
+			if (!password || password === '') {
 				const response = {
 					message: 'É necessário informar uma Senha.'
 				}
 				res.status(401).send(response)
 				return next(response)
 			}
-			UserModel.findOne({ where: { email: email, password: password} })
+			UserModel.findOne({ where: { email: email, password: password } })
 				.then((result) => {
 					const response = {
 						message: 'Acesso não autorizado!, verifique seus dados e tente novamente'
 					}
 					result ?
-					res.status(200).json(result)
-					: 
-					res.status(401).send(response)
+						res.status(200).json(result)
+						:
+						res.status(401).send(response)
 					return next(response)
 
 				});
