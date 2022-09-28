@@ -29,7 +29,7 @@ const CategoriesModel = db.define('tb_categorias', {
 	
 });
 
-PontoCategoriesModel.hasMany(CategoriesModel, {
+CategoriesModel.hasMany(PontoCategoriesModel, {
 	constraints: true,
 	foreignKey: 'id_category'
 })

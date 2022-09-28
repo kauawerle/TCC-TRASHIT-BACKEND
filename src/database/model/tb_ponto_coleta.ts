@@ -44,7 +44,7 @@ const PontoColetaModel = db.define('tb_ponto_coleta', {
 	}
 });
 
-PontoColetaModel.belongsTo(PontoCategoriesModel, {
+PontoCategoriesModel.belongsTo(PontoColetaModel, {
 	constraints: true,
 	foreignKey: 'id_ponto',
 });
