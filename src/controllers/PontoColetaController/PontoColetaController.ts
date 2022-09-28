@@ -30,27 +30,28 @@ class CategoryController {
 	async create(req: Request, res: Response) {
 		try {
 			const {
-				title,
+				name,
 				latitude,
 				longitude,
 				street,
 				uf,
 				city,
 				country,
-				image
+				image,
+				id_user
 			} = req.body;
 
 			const pontos = await PontoColetaModel.create({
 				id: v4(),
-				title,
+				name,
 				image,
 				latitude,
 				longitude,
 				street,
 				uf,
 				city,
-				country
-
+				country,
+				id_user
 			});
 
 			return res.status(200).json(pontos);
