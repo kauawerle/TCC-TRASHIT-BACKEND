@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
-import { CategoriesModel } from "../../database/model/tb_categoria";
+import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
 
 class CategoryController {
 	async index(req: Request, res: Response) {
@@ -8,10 +8,9 @@ class CategoryController {
 	}
 
 	async findAll(req: Request, res: Response) {
-		
 		try {
-			const categories = await CategoriesModel.findAll();
-			res.json(categories);
+			const pontos = await PontoColetaModel.findAll();
+			res.json(pontos);
 		}
 		catch (err) {
 			return res.status(500).json(err);
@@ -20,7 +19,7 @@ class CategoryController {
 	async findById(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
-			CategoriesModel.findByPk(id).then(result => {
+			PontoColetaModel.findByPk(id).then(result => {
 				res.status(200).json(result)
 			});
 		} catch (err) {
@@ -29,33 +28,36 @@ class CategoryController {
 	}
 	async create(req: Request, res: Response) {
 		try {
-			const { title } = req.body;
+			const {
+				name,
+				latitude,
+				longitude,
+				street,
+				uf,
+				city,
+				country,
+				image,
+				id_user
+			} = req.body;
 
-			const category = await CategoriesModel.create({
+			const pontos = await PontoColetaModel.create({
 				id: v4(),
-				title,
-				imageDate: `http://192.168.0.107:3333/uploads/${req.file.path}`
+				name,
+				image,
+				latitude,
+				longitude,
+				street,
+				uf,
+				city,
+				country,
+				id_user
 			});
 
-			return res.status(200).json(category);
+			return res.status(200).json(pontos);
 		}
 		catch (err) {
 			console.log(err);
 			return res.status(500).json({ err: err.message });
-		}
-	}
-
-	async destroy(req: Request, res: Response) {
-		try {
-			await CategoriesModel.destroy({
-				where: {
-					id: req.params.id
-				}
-			}).then(result => {
-				res.status(200).json({ result: 'deletado' });
-			})
-		} catch (err) {
-			return res.status(500).json(err);
 		}
 	}
 

@@ -1,5 +1,6 @@
 import Sequelize, { DataTypes } from 'sequelize';
 import { db } from '../connection';
+import { PontoColetaModel } from './tb_ponto_coleta';
 
 const UserModel = db.define('tb_users', {
 	id: {
@@ -46,6 +47,11 @@ const UserModel = db.define('tb_users', {
 		type: Sequelize.STRING,
 		allowNull: false
 	},
+});
+
+PontoColetaModel.belongsTo(UserModel, {
+	constraints: true,
+	foreignKey: 'id_user',
 });
 
 export { UserModel };
