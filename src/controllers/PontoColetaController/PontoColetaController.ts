@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
 import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
-import { db } from "../../database/connection";
 
 class CategoryController {
 	async index(req: Request, res: Response) {

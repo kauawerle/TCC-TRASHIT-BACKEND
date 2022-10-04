@@ -73,17 +73,6 @@ class UserController {
 				number
 			} = req.body;
 
-			console.log(
-				name,
-				email,
-				password,
-				adm,
-				cnpj,
-				city,
-				uf,
-				number
-			)
-
 			const user = await UserModel.create({
 				id: v4(),
 				name,
