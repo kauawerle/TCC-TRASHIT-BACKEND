@@ -8,13 +8,21 @@ const CategoriesModel = db.define('tb_categorias', {
 		allowNull: false,
 		primaryKey: true
 	},
-	image: {
-		type: DataTypes.BLOB('long'),
+	imageData: {
+		type: DataTypes.STRING(100),
+		allowNull: true
 	},
 	title: {
 		type: DataTypes.STRING(100),
 		allowNull: false,
-		
+	},
+	createdAt: {
+		type: DataTypes.DATE,
+		allowNull: true,
+	},
+	updatedAt: {
+		type: DataTypes.DATE,
+		allowNull: true,
 	}
 	
 });
