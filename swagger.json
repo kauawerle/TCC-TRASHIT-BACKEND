@@ -1,134 +1,99 @@
 {
   "swagger": "2.0",
   "info": {
-    "description": "This is a API project in TrashIt Project",
     "version": "1.0.0",
-    "title": "TrashIt",
-    "contact": {
-      "email": "abc@gmail.com"
-    },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
-    }
+    "title": "REST API",
+    "description": ""
   },
-  "schemes": ["http"],
-  "host": "localhost:3080",
-  "basePath": "/api",
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
   "paths": {
-    "/todos": {
+    "/user/authent/": {
       "get": {
-        "summary": "Get all the tasks",
-        "description": "Get all the tasks",
-        "produces": ["application/json"],
-        "parameters": [],
+        "description": "",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/todosResponse"
-              }
-            }
+            "description": "OK"
           },
-          "400": {
-            "description": "Invalid status value",
-            "schema": {
-              "$ref": "#/definitions/InvalidResponse"
-            }
+          "401": {
+            "description": "Unauthorized"
           }
         }
       }
     },
-    "/user": {
-      "post": {
-				"tags": [
-					"User"
-				],
-				"summary": "Create a user",
-				"description": "Create a new user",
-				"requestBody": {
-					"content": {
-						"application/json": {
-							"schema": {
-								"type": "object",
-								"properties": {
-									"name": {
-										"type": "string"
-									},
-									"description": {
-										"type": "string"
-									}
-								},
-								"example": {
-									"name": "user name sample",
-									"description": "user description sample"
-								}
-							}
-						}
-					}
-				},
-				"responses": {
-					"201": {
-						"description": "Created"
-					},
-					"500": {
-						"description": "User Already Exists"
-					}
-				}
-			},
+    "/user/{id}": {
       "get": {
-        "tags": [
-					"User"
-				],
-        "summary": "Get all the users",
-        "description": "Get all the users",
-        "produces": ["application/json"],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/todosResponse"
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value",
-            "schema": {
-              "$ref": "#/definitions/InvalidResponse"
-            }
-          }
-        }
-      }
-    },
-    "/todos/{id}": {
-      "put": {
-        "summary": "Update the tasks",
-        "description": "Update the tasks",
-        "produces": ["application/json"],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "task id that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
             "required": true,
             "type": "string"
           },
           {
-            "in": "body",
             "name": "body",
-            "description": "task object",
-            "required": true,
+            "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-                "task": {
-                  "type": "object",
-                  "$ref": "#/definitions/Task"
+                "name": {
+                  "example": "any"
+                },
+                "email": {
+                  "example": "any"
+                },
+                "password": {
+                  "example": "any"
+                },
+                "adm": {
+                  "example": "any"
+                },
+                "cnpj": {
+                  "example": "any"
+                },
+                "city": {
+                  "example": "any"
+                },
+                "uf": {
+                  "example": "any"
+                },
+                "number": {
+                  "example": "any"
                 }
               }
             }
@@ -136,109 +101,112 @@
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/todosResponse"
-              }
-            }
+            "description": "OK"
           },
-          "400": {
-            "description": "Invalid status value",
-            "schema": {
-              "$ref": "#/definitions/InvalidResponse"
-            }
+          "500": {
+            "description": "Internal Server Error"
           }
         }
-      }
-    },
-    "/todo/{id}": {
+      },
       "delete": {
-        "summary": "Delete the task",
-        "description": "Delete the task",
-        "produces": ["application/json"],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "task id that needs to be deleted",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "array",
-              "items": {
-                "$ref": "#/definitions/todosResponse"
-              }
-            }
+            "description": "OK"
           },
-          "400": {
-            "description": "Invalid status value",
-            "schema": {
-              "$ref": "#/definitions/InvalidResponse"
-            }
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
-    }
-  },
-  "definitions": {
-    "todosResponse": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "uuid"
-        },
-        "name": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "cnpj": {
-          "type": "string"
-        },
-        "city": {
-          "type": "string"
-        },
-        "uf": {
-          "type": "string"
-        },
-        "number": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
+    },
+    "/category/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       }
     },
-    "Task": {
-      "type": "object",
-      "properties": {
-        "task": {
-          "type": "string"
-        },
-        "assignee": {
-          "type": "string"
-        },
-        "status": {
-          "type": "string"
+    "/pontocoleta/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       }
     },
-    "InvalidResponse": {
-      "type": "object",
-      "properties": {
-        "statusCode": {
-          "type": "string"
-        },
-        "message": {
-          "type": "string"
+    "/pontocategories/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
         }
       }
     }

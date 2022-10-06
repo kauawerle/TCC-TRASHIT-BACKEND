@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
 import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
+
 import { PontoCategoriesModel } from "../../database/model/tb_ponto_categoria";
 import { db } from "../../database/connection";
 const sequelize = require('sequelize')

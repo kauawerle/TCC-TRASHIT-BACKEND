@@ -30,17 +30,17 @@ const UserModel = db.define('tb_users', {
 
 	city: {
 		type: Sequelize.STRING(200),
-		allowNull: false
+		allowNull: true
 	},
 
 	uf: {
 		type: Sequelize.STRING(2),
-		allowNull: false
+		allowNull: true
 	},
 
 	number: {
 		type: Sequelize.STRING(18),
-		allowNull: false
+		allowNull: true
 	},
 
 	password: {
