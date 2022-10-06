@@ -8,7 +8,6 @@ class CategoryController {
 	}
 
 	async findAll(req: Request, res: Response) {
-		
 		try {
 			const categories = await CategoriesModel.findAll();
 			res.json(categories);
