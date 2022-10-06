@@ -2,6 +2,10 @@ import { Request, Response } from "express";
 import { v4 } from "uuid";
 import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
 
+import { PontoCategoriesModel } from "../../database/model/tb_ponto_categoria";
+import { db } from "../../database/connection";
+const sequelize = require('sequelize')
+
 class CategoryController {
 	async index(req: Request, res: Response) {
 
@@ -32,28 +36,54 @@ class CategoryController {
 				name,
 				latitude,
 				longitude,
-				street,
 				uf,
 				city,
 				country,
 				image,
+				items,
 				id_user
 			} = req.body;
 
-			const pontos = await PontoColetaModel.create({
+
+			const pontos = {
 				id: v4(),
 				name,
 				image,
 				latitude,
 				longitude,
-				street,
 				uf,
 				city,
 				country,
 				id_user
-			});
+			};
 
-			return res.status(200).json(pontos);
+			const insertedIds: any = await PontoColetaModel.create(pontos)
+			const pontoId = insertedIds.id
+  
+  
+     const pointItems = items
+      .split(',')
+      .map( (item_id: string )=> {
+        return {
+          id_category: item_id,
+          id_ponto: pontoId,
+        }
+      })
+  
+			Object.values(pointItems).map((point_category: any) => {
+				const id_category = point_category.id_category
+				const id_ponto = point_category.id_ponto
+				  PontoCategoriesModel.create({
+					id_category,
+					id_ponto
+				 })
+
+			})
+  
+     return res.json({
+       id: pontoId,
+       ...pontos
+     })
 		}
 		catch (err) {
 			console.log(err);
