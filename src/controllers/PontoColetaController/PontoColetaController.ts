@@ -41,7 +41,8 @@ class CategoryController {
 				country,
 				image,
 				items,
-				id_user
+				id_user,
+				status
 			} = req.body;
 
 
@@ -54,7 +55,8 @@ class CategoryController {
 				uf,
 				city,
 				country,
-				id_user
+				id_user,
+				status
 			};
 
 			const insertedIds: any = await PontoColetaModel.create(pontos)
