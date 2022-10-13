@@ -42,9 +42,8 @@ const PontoColetaModel = db.define('tb_ponto_coleta', {
 		type: DataTypes.STRING(100),
 		allowNull: false,
 	},
-	//Status 0: Pendente; Status 1: Aceito; Status 2: Recusado
 	status: {
-		type: DataTypes.INTEGER,
+		type: DataTypes.STRING(20),
 		allowNull: true
 	}
 });
