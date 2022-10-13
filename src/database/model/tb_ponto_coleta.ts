@@ -41,6 +41,10 @@ const PontoColetaModel = db.define('tb_ponto_coleta', {
 	country: {
 		type: DataTypes.STRING(100),
 		allowNull: false,
+	},
+	status: {
+		type: DataTypes.INTEGER,
+		allowNull: true
 	}
 });
 
