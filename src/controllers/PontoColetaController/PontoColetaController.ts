@@ -61,31 +61,31 @@ class CategoryController {
 
 			const insertedIds: any = await PontoColetaModel.create(pontos)
 			const pontoId = insertedIds.id
-  
-  
-     const pointItems = items
-      .split(',')
-      .map( (item_id: string )=> {
-        return {
-          id_category: item_id,
-          id_ponto: pontoId,
-        }
-      })
-  
+
+
+			const pointItems = items
+				.split(',')
+				.map((item_id: string) => {
+					return {
+						id_category: item_id,
+						id_ponto: pontoId,
+					}
+				})
+
 			Object.values(pointItems).map((point_category: any) => {
 				const id_category = point_category.id_category
 				const id_ponto = point_category.id_ponto
-				  PontoCategoriesModel.create({
+				PontoCategoriesModel.create({
 					id_category,
 					id_ponto
-				 })
+				})
 
 			})
-  
-     return res.json({
-       id: pontoId,
-       ...pontos
-     })
+
+			return res.json({
+				id: pontoId,
+				...pontos
+			})
 		}
 		catch (err) {
 			console.log(err);

@@ -1,4 +1,4 @@
-import Sequelize, { DataTypes,  } from 'sequelize';
+import Sequelize, { DataTypes, } from 'sequelize';
 import { db } from '../connection';
 import { PontoCategoriesModel } from './tb_ponto_categoria';
 
@@ -15,10 +15,10 @@ const PontoColetaModel = db.define('tb_ponto_coleta', {
 		allowNull: false,
 	},
 	image: {
-		type: DataTypes.STRING(100),
+		type: DataTypes.STRING(10485760),
 		allowNull: false,
 	},
-	latitude: { 
+	latitude: {
 		type: DataTypes.DECIMAL,
 		allowNull: false,
 	},
