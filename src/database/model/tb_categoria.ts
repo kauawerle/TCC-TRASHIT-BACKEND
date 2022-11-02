@@ -33,6 +33,10 @@ CategoriesModel.hasMany(PontoCategoriesModel, {
 	constraints: true,
 	foreignKey: 'id_category'
 })
+CategoriesModel.hasMany(PontoColetaModel, {
+	constraints: true,
+	foreignKey: 'id_category'
+})
 
 
 export { CategoriesModel };

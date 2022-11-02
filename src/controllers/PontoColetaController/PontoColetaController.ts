@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
-import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
+import { QueryTypes } from "sequelize";
 
+import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
 import { PontoCategoriesModel } from "../../database/model/tb_ponto_categoria";
-import { db } from "../../database/connection";
-const sequelize = require('sequelize')
+import { CategoriesModel } from "../../database/model/tb_categoria";
 
 class CategoryController {
 	async index(req: Request, res: Response) {
@@ -20,6 +20,23 @@ class CategoryController {
 			return res.status(500).json(err);
 		}
 	}
+
+	async findByCategories(req: Request, res: Response) {
+		try {
+			const { id_category } = req.query;
+
+			const a = await CategoriesModel.findAll({
+				include: [{
+					model: PontoColetaModel,
+					where: [{ "id_category": id_category}]
+				}]
+			})
+			res.status(200).json(a)
+		} catch (err) {
+			return res.status(500).json(err);
+		}
+	}
+
 	async findById(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
@@ -88,7 +105,6 @@ class CategoryController {
 			})
 		}
 		catch (err) {
-			console.log(err);
 			return res.status(500).json({ err: err.message });
 		}
 	}
