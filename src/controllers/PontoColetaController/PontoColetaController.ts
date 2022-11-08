@@ -6,7 +6,7 @@ import { PontoColetaModel } from "../../database/model/tb_ponto_coleta";
 import { PontoCategoriesModel } from "../../database/model/tb_ponto_categoria";
 import { CategoriesModel } from "../../database/model/tb_categoria";
 
-class CategoryController {
+class PontoColetaController {
 	async index(req: Request, res: Response) {
 
 	}
@@ -111,4 +111,4 @@ class CategoryController {
 
 }
 
-export default new CategoryController();
+export default new PontoColetaController();
