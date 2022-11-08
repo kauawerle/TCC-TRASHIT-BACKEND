@@ -25,10 +25,10 @@ class PontoColetaController {
 		try {
 			const { id_category } = req.query;
 
-			const a = await CategoriesModel.findAll({
+			const a = await PontoCategoriesModel.findAll({
+				where: [{ "id_category": id_category }],
 				include: [{
 					model: PontoColetaModel,
-					where: [{ "id_category": id_category}]
 				}]
 			})
 			res.status(200).json(a)
