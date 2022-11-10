@@ -34,7 +34,7 @@ class PontoColetaController {
 					include: [{
 						model: PontoColetaModel,
 					}]
-				})
+				}) 
 
 				res.status(200).json(categoryFiltered)
 			}
