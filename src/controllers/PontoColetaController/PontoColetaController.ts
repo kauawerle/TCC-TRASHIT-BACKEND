@@ -25,13 +25,19 @@ class PontoColetaController {
 		try {
 			const { id_category } = req.query;
 
-			const a = await PontoCategoriesModel.findAll({
-				where: [{ "id_category": id_category }],
-				include: [{
-					model: PontoColetaModel,
-				}]
-			})
-			res.status(200).json(a)
+			if (id_category == undefined) {
+				const pontos = await PontoColetaModel.findAll();
+				res.json(pontos);
+			} else {
+				const categoryFiltered = await PontoCategoriesModel.findAll({
+					where: [{ "id_category": id_category }],
+					include: [{
+						model: PontoColetaModel,
+					}]
+				}) 
+
+				res.status(200).json(categoryFiltered)
+			}
 		} catch (err) {
 			return res.status(500).json(err);
 		}
