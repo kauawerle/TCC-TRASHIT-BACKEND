@@ -1,5 +1,5 @@
 # TCC-TRASHIT-BACKEND
-## Backend da aplicação Trashit
+## Backend da aplicação Trash-it
 
 ### Começando a usar o projeto:
 
