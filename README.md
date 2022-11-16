@@ -9,5 +9,5 @@
 
 - `const db = new Sequelize('postgres://USER:PASSWORD@localhost:5432/NAME-DATABASE');
 `
-### Rodar a seed
+### Rodar as imagens das categorias(seed)
 - ` npx sequelize-cli db:seed:undo:all`
