@@ -11,6 +11,7 @@ module.exports = {
       { id: v4(), title: "Resíduos Eletrônicos", imageData: "eletronicos.svg" },
       { id: v4(), title: "Resíduos Orgânicos", imageData: "organicos.svg" },
       { id: v4(), title: "Oléos de cozinha", imageData: "oleo.svg" },
+      { id: v4(), title: "Lixo Hospitalar", imageData: "hospitalar.svg" },
     ]);
   },
 };
