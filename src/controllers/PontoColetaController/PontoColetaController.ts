@@ -65,7 +65,9 @@ class PontoColetaController {
 				image,
 				items,
 				id_user,
-				status
+				status,
+				email,
+				cellphone
 			} = req.body;
 
 
@@ -79,7 +81,9 @@ class PontoColetaController {
 				city,
 				country,
 				id_user,
-				status
+				status,
+				email,
+				cellphone
 			};
 
 			const insertedIds: any = await PontoColetaModel.create(pontos)
