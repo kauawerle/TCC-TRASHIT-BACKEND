@@ -34,7 +34,7 @@ class PontoColetaController {
 					include: [{
 						model: PontoColetaModel,
 					}]
-				}) 
+				})
 
 				res.status(200).json(categoryFiltered)
 			}
@@ -115,6 +115,25 @@ class PontoColetaController {
 		}
 	}
 
+	async destroy(req: Request, res: Response) {
+		try {
+			const { id, id_ponto_categories } = req.query;
+
+			const destroyCategories =
+				await PontoCategoriesModel.destroy({
+					where: { id: id_ponto_categories }
+				})
+
+			const destroyPoints =
+				await PontoColetaModel.destroy({
+					where: { id: id }
+				})
+
+			res.status(200).json([destroyPoints, destroyCategories])
+		} catch (err) {
+			return res.status(500).json(err);
+		}
+	}
 }
 
 export default new PontoColetaController();

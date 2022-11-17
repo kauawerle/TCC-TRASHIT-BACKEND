@@ -13,6 +13,8 @@ pontoColetaRoutes.get("", PontoColetaController.findAll)
 pontoColetaRoutes.get("/findCa", PontoColetaController.findByCategories)
 
 pontoColetaRoutes.get("/:id", PontoColetaController.findById)
+ 
+pontoColetaRoutes.delete("/delete", PontoColetaController.destroy)
 
 
 export default pontoColetaRoutes;
