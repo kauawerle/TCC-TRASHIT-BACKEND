@@ -45,6 +45,14 @@ const PontoColetaModel = db.define('tb_ponto_coleta', {
 	status: {
 		type: DataTypes.STRING(20),
 		allowNull: true
+	},
+	cellphone: {
+		type: DataTypes.STRING(16),
+		allowNull: true,
+	},
+	email: {
+		type: DataTypes.STRING(255),
+		allowNull: true,
 	}
 });
 
