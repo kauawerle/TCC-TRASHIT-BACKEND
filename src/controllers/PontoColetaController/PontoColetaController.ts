@@ -121,11 +121,11 @@ class PontoColetaController {
 
 	async destroy(req: Request, res: Response) {
 		try {
-			const { id, id_ponto_categories } = req.query;
+			const { id } = req.query;
 
 			const destroyCategories =
 				await PontoCategoriesModel.destroy({
-					where: { id: id_ponto_categories }
+					where: { id_ponto: id }
 				})
 
 			const destroyPoints =
