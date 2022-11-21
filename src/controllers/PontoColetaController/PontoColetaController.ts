@@ -43,6 +43,24 @@ class PontoColetaController {
 		}
 	}
 
+	async findCategoriesByPoint(req: Request, res: Response) {
+		try {
+			const { id_ponto } = req.query;
+
+			const categoryFiltered = await CategoriesModel.findAll({
+				include: [{
+					where: [{ "id_ponto": id_ponto }],
+					model: PontoCategoriesModel,
+				}]
+			})
+
+			res.status(200).json(categoryFiltered)
+
+		} catch (err) {
+			return res.status(500).json(err);
+		}
+	}
+
 	async findById(req: Request, res: Response) {
 		try {
 			const { id } = req.params;
@@ -88,7 +106,6 @@ class PontoColetaController {
 
 			const insertedIds: any = await PontoColetaModel.create(pontos)
 			const pontoId = insertedIds.id
-
 
 			const pointItems = items
 				.split(',')
