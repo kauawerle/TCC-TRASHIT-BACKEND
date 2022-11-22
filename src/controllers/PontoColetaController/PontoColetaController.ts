@@ -36,7 +36,16 @@ class PontoColetaController {
 					}]
 				})
 
-				res.status(200).json(categoryFiltered)
+				const uniqueCategories = Object.values(categoryFiltered).reduce((acc, curr: any) => {
+					const index = acc.findIndex(a => a.id_category !== curr.id_category);
+					if (index < 0 && curr.id_category) {
+						acc.push(curr)
+
+					}
+					return acc
+				}, [])
+
+				res.status(200).json(uniqueCategories)
 			}
 		} catch (err) {
 			return res.status(500).json(err);
