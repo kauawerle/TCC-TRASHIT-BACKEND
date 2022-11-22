@@ -168,6 +168,46 @@
         }
       }
     },
+    "/pontocoleta/findCa": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_category",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pontocoleta/findCategoriesByPoint": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id_ponto",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/pontocoleta/{id}": {
       "get": {
         "description": "",
@@ -176,6 +216,26 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
+    "/pontocoleta/delete": {
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
             "type": "string"
           }
         ],
