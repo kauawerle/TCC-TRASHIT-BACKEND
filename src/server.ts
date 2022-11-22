@@ -6,7 +6,6 @@ import { errors } from 'celebrate'
 import { db } from './database/connection';
 
 import swaggerUi from 'swagger-ui-express';
-import bodyParser from 'body-parser';
 import swaggerFile from "../swagger.json";
 
 import { routes } from './routes';
@@ -23,7 +22,6 @@ app.use(express.urlencoded({ limit: '100mb' }));
 app.use(routes);
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
-app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
