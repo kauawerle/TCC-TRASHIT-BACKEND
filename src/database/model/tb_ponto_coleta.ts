@@ -53,6 +53,10 @@ const PontoColetaModel = db.define('tb_ponto_coleta', {
 	email: {
 		type: DataTypes.STRING(255),
 		allowNull: true,
+	},
+	description: {
+		type: DataTypes.STRING(255),
+		allowNull: true,
 	}
 });
 
