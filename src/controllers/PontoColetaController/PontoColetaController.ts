@@ -166,6 +166,27 @@ class PontoColetaController {
 			return res.status(500).json(err);
 		}
 	}
+	async update(req: Request, res: Response) {
+		try {
+			const {
+				status
+			} = req.body;
+
+			await PontoColetaModel.update({
+				status
+			}, {
+				where: {
+					id: req.params.id
+				}
+			}).then(result => {
+				res.status(200).json(result)
+			});
+
+		} catch (err) {
+			return res.status(500).json(err);
+
+		}
+	}
 }
 
 export default new PontoColetaController();

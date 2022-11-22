@@ -18,5 +18,6 @@ pontoColetaRoutes.get("/:id", PontoColetaController.findById)
  
 pontoColetaRoutes.delete("/delete", PontoColetaController.destroy)
 
+pontoColetaRoutes.put("/:id", PontoColetaController.update)
 
 export default pontoColetaRoutes;
