@@ -166,7 +166,7 @@ class PontoColetaController {
 			return res.status(500).json(err);
 		}
 	}
-	async update(req: Request, res: Response) {
+	async updateStatus(req: Request, res: Response) {
 		try {
 			const {
 				status
