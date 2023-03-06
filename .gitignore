@@ -1,4 +1,5 @@
 node_modules
 launch.json
 tsconfig.json
+dist
 *.png

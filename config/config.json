@@ -17,13 +17,13 @@
     "port": "5432"
 
   },
-  "production": {
-    "username": "vcvdeerhjojtpa",
-    "password": "c20912f7537bcbda95644de08415d12699ea82552c133bf9180c09ca5bdb9d92",
-    "database": "dfqvd4loj6lt4h",
-    "host": "ec2-54-85-56-210.compute-1.amazonaws.com",
+  "test": {
+    "username": "postgres",
+    "password": "root",
+    "database": "trash-it",
+    "host": "localhost",
     "dialect": "postgres",
-    "port": "5432",
-    "uri": "postgres://vcvdeerhjojtpa:40362cfe0d0d9a7e571df6edf90a0c014fe1e2d6b16c596e54726d4a054bfb5c@ec2-34-197-84-74.compute-1.amazonaws.com:5432/df8m9agb9d469c"
+    "port": "5432"
+
   }
 }

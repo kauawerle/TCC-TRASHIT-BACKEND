@@ -8,7 +8,7 @@ import { db } from './database/connection';
 import swaggerUi from 'swagger-ui-express';
 import swaggerFile from "../swagger.json";
 
-import { routes } from './routes';
+import { routes } from './routes/index';
 
 const app = express();
 
