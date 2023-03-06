@@ -8,9 +8,10 @@
   },
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "build": "tsup src",
+    "start": "node dist/server.js",
     "swagger-autogen": "node swagger.js",
-    "lint": "eslint . --ext .ts",
-    "build": "rimraf ./src && tsc"
+    "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "body-parser": "^1.20.0",
@@ -29,6 +30,7 @@
     "swagger-autogen": "^2.22.0",
     "swagger-jsdoc": "^6.2.5",
     "swagger-ui-express": "^4.5.0",
+    "tsup": "^6.6.3",
     "typescript": "*",
     "uuid": "^8.3.2"
   },
