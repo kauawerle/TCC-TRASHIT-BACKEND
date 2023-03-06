@@ -1,3 +1,9 @@
 {
-"DATABASE" : "trash_it_user:HYYo1VPOIQhBZqaFl9ZLC776oZPlYRc9@dpg-cg32s24eoogop18annk0-a/trash_it'"
+ "development": {
+	"username": "trash_it_user",
+	"password": "HYYo1VPOIQhBZqaFl9ZLC776oZPlYRc9",
+	"database": "trash_it",
+	"host": "dpg-cg32s24eoogop18annk0-a",
+	"dialect": "postgres"
+	}
 }
