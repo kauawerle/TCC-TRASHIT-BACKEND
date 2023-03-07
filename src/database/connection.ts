@@ -1,6 +1,16 @@
 import { Sequelize } from 'sequelize';
 
-let db = new Sequelize('postgres://trash_it_user:HYYo1VPOIQhBZqaFl9ZLC776oZPlYRc9@dpg-cg32s24eoogop18annk0-a/trash_it');
+const db = new Sequelize({
+  database: "trash_it",
+  username: "trash_it_user",
+  password: "HYYo1VPOIQhBZqaFl9ZLC776oZPlYRc9",
+  host: "dpg-cg32s24eoogop18annk0-a.ohio-postgres.render.com",
+  port: 5432,
+  dialect: "postgres",
+  dialectOptions: {
+    ssl: true,
+  },
+});
 
 
-	export { db };
+export { db };
