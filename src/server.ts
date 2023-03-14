@@ -27,7 +27,7 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 app.use(errors());
 
-app.listen(3333, async () => {
+app.listen(3400, async () => {
 	await db.sync();
 	console.log('server started');
 
