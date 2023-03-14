@@ -9,11 +9,12 @@
   "scripts": {
     "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
     "start": "node dist/server.js",
-    "build": "tsup src --output public",
+    "build": "tsup src",
     "swagger-autogen": "node swagger.js",
     "lint": "eslint . --ext .ts"
   },
   "dependencies": {
+    "@vercel/node": "^2.9.12",
     "body-parser": "^1.20.0",
     "celebrate": "^15.0.1",
     "cors": "^2.8.5",
