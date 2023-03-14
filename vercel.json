@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "trash-it",
+    "builds": [
+       { "dist": "server.js", "use": "@vercel/node" }
+    ],
+    "routes": [
+       { "src": "/(.*)", "dest": "/server.js" }
+    ]
+ }
