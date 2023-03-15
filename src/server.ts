@@ -12,7 +12,7 @@ import { routes } from './routes/index';
 
 const app = express();
 
-
+const port = 3400
 
 app.use(cors());
 
@@ -27,8 +27,8 @@ app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
 app.use(errors());
 
-app.listen(3400, async () => {
+app.listen(port, async () => {
 	await db.sync();
-	console.log('server started');
+	console.log('server started, port: ' + port);
 
 });
