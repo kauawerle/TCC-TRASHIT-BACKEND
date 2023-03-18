@@ -103,7 +103,7 @@ class UserController {
 			const {
 				name,
 				email,
-				password,
+				password, 
 				adm,
 				cnpj,
 				city,
