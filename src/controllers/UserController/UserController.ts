@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import bcrypt from "bcrypt";
 import { v4 } from "uuid";
 
 import { UserModel } from "../../database/model/user";
@@ -24,6 +25,7 @@ class UserController {
 
 		}
 	}
+
 	async findByEmail(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { email, password } = req.query;
@@ -43,7 +45,8 @@ class UserController {
 				res.status(401).send(response)
 				return next(response)
 			}
-			UserModel.findOne({ where: { email: email, password: password } })
+
+			UserModel.findOne({ where: { email: email, password: password} })
 				.then((result) => {
 					const response = {
 						message: 'Acesso não autorizado!, verifique seus dados e tente novamente'
@@ -56,7 +59,7 @@ class UserController {
 
 				});
 		} catch (err) {
-			throw err
+			return res.status(500).json(err);
 		}
 	}
 
@@ -73,11 +76,14 @@ class UserController {
 				number
 			} = req.body;
 
+			var salt = bcrypt.genSaltSync(10);
+			var hash = bcrypt.hashSync(password, salt);
+
 			const user = await UserModel.create({
 				id: v4(),
 				name,
 				email,
-				password,
+				password: hash,
 				adm,
 				cnpj,
 				city,
@@ -91,6 +97,7 @@ class UserController {
 			return res.status(500).json(err);
 		}
 	}
+
 	async update(req: Request, res: Response) {
 		try {
 			const {
@@ -103,11 +110,13 @@ class UserController {
 				uf,
 				number
 			} = req.body;
+			var salt = bcrypt.genSaltSync(10);
+			var hash = bcrypt.hashSync(password, salt);
 
 			await UserModel.update({
 				name,
 				email,
-				password,
+				password: hash,
 				adm,
 				cnpj,
 				city,
