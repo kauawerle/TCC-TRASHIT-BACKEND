@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import { errors } from 'celebrate'
+import bodyParser, { BodyParser } from 'body-parser';
 
 import { db } from './database/connection';
 
@@ -20,7 +21,7 @@ app.use(express.json({ limit: '100mb' }));
 app.use(express.urlencoded({ limit: '100mb' }));
 
 app.use(routes);
-
+app.use(bodyParser.json())
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerFile));
 
 app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
