@@ -4,6 +4,17 @@ import { v4 } from "uuid";
 
 import { UserModel } from "../../database/model/user";
 
+
+interface UserInterface {
+	name: string,
+	email: string,
+	password: string,
+	adm: string,
+	cnpj: string,
+	city: string,
+	uf: string,
+	number: string
+}
 class UserController {
 	async findAll(req: Request, res: Response) {
 		try {
@@ -45,13 +56,18 @@ class UserController {
 				res.status(401).send(response)
 				return next(response)
 			}
-
-			UserModel.findOne({ where: { email: email, password: password} })
-				.then((result) => {
+			
+			UserModel.findOne({ where: { email: email} })
+			.then((result) => {
+				var user = result.toJSON();
+				
+				const password = req.query.password.toString();
+				const match = bcrypt.compareSync(password, user.password)
+					
 					const response = {
 						message: 'Acesso não autorizado!, verifique seus dados e tente novamente'
 					}
-					result ?
+					result && match ?
 						res.status(200).json(result)
 						:
 						res.status(401).send(response)
