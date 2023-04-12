@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import bcrypt from "bcrypt";
 import { v4 } from "uuid";
+import { Op } from 'sequelize';
 
 import { UserModel } from "../../database/model/user";
 
@@ -56,14 +57,14 @@ class UserController {
 				res.status(401).send(response)
 				return next(response)
 			}
-			
-			UserModel.findOne({ where: { email: email} })
-			.then((result) => {
-				var user = result.toJSON();
-				
-				const password = req.query.password.toString();
-				const match = bcrypt.compareSync(password, user.password)
-					
+
+			UserModel.findOne({ where: { email: email } })
+				.then((result) => {
+					var user = result.toJSON();
+
+					const password = req.query.password.toString();
+					const match = bcrypt.compareSync(password, user.password)
+
 					const response = {
 						message: 'Acesso não autorizado!, verifique seus dados e tente novamente'
 					}
@@ -95,19 +96,33 @@ class UserController {
 			var salt = bcrypt.genSaltSync(10);
 			var hash = bcrypt.hashSync(password, salt);
 
-			const user = await UserModel.create({
-				id: v4(),
-				name,
-				email,
-				password: hash,
-				adm,
-				cnpj,
-				city,
-				uf,
-				number
-			});
+			const emailVerification =
+				await UserModel.findOne({
+					where: {
+						email: {
+							[Op.eq]: email,
+						},
+					}
+				})
 
-			return res.status(201).json(user);
+			if (emailVerification) {
+				return res.status(400).json({ message: 'Email já cadastrado.' });
+			} else {
+				const user = await UserModel.create({
+					id: v4(),
+					name,
+					email,
+					password: hash,
+					adm,
+					cnpj,
+					city,
+					uf,
+					number
+				});
+
+				return res.status(201).json(user);
+			}
+
 		}
 		catch (err) {
 			return res.status(500).json(err);
@@ -119,7 +134,7 @@ class UserController {
 			const {
 				name,
 				email,
-				password, 
+				password,
 				adm,
 				cnpj,
 				city,
