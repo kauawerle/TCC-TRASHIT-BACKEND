@@ -117,6 +117,7 @@ class PontoColetaController {
 				description,
 			};
 
+			//Example Raw Query
 			// let rawQuery = "SELECT * FROM tb_users WHERE id = :id_user";
 			// let userInfo;
 			// db.query(rawQuery, {
