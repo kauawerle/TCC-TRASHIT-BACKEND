@@ -83,10 +83,6 @@ class UserController {
 			var salt = bcrypt.genSaltSync(10);
 			var hash = bcrypt.hashSync(password, salt);
 
-			var isValid = Cnpjoto.isValid(cnpj);
-			if (!isValid) {
-				return res.status(401).json({ message: "Cnpj inválido" });
-			}
 			const emailVerification = await UserModel.findOne({
 				where: {
 					email: {
@@ -110,7 +106,15 @@ class UserController {
 					number,
 				});
 
-				return res.status(201).json(user);
+				Object.values(user).some((val) => {
+					if (val) {
+						var isValid = Cnpjoto.isValid(cnpj);
+						if (!isValid) {
+							return res.status(401).json({ message: "Cnpj inválido" });
+						}
+					}
+					return res.status(201).json(user);
+			});
 			}
 		} catch (err) {
 			return res.status(500).json(err);

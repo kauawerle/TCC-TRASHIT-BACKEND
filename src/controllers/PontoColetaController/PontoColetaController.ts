@@ -135,10 +135,11 @@ class PontoColetaController {
 			// userInfo.map((res) => {
 			// 	user = res.adm;
 			// });
-
+			
 			const pontosEmpty = Object.values(pontos).some((val) => {
 				return typeof val === "undefined" || val === "";
 			});
+
 			if (pontosEmpty) {
 				res
 					.status(400)

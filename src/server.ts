@@ -1,8 +1,8 @@
-import express from 'express';
+import bodyParser from 'body-parser';
+import { errors } from 'celebrate';
 import cors from 'cors';
+import express from 'express';
 import path from 'path';
-import { errors } from 'celebrate'
-import bodyParser, { BodyParser } from 'body-parser';
 
 import { db } from './database/connection';
 
@@ -10,6 +10,7 @@ import swaggerUi from 'swagger-ui-express';
 import swaggerFile from "../swagger.json";
 
 import { routes } from './routes/index';
+
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use(errors());
 
 app.listen(port, async () => {
 	await db.sync();
+	// transportEmail;
 	console.log('server started, port: ' + port);
 
 });
