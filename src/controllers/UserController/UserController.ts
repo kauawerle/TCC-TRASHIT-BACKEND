@@ -91,8 +91,24 @@ class UserController {
 				},
 			});
 
-			if (emailVerification) {
-				return res.status(400).json({ message: "Email já cadastrado." });
+			const cnpjVerification = await UserModel.findOne({
+				where: {
+					cnpj: {
+						[Op.eq]: cnpj,
+					},
+				},
+			});
+
+			if (adm === true) {
+				var isValid = Cnpjoto.isValid(cnpj);
+
+				if (isValid == false) {
+					return res.status(400).json({ message: "Cnpj inválido" });
+				}
+			}
+
+			if (emailVerification || cnpjVerification) {
+				return res.status(400).json({ message: "Conta já cadastrado verifique seu email ou Cnpj." });
 			} else {
 				const user = await UserModel.create({
 					id: v4(),
@@ -105,16 +121,7 @@ class UserController {
 					uf,
 					number,
 				});
-
-				Object.values(user).some((val) => {
-					if (val) {
-						var isValid = Cnpjoto.isValid(cnpj);
-						if (!isValid) {
-							return res.status(401).json({ message: "Cnpj inválido" });
-						}
-					}
-					return res.status(201).json(user);
-			});
+				return res.status(201).json(user);
 			}
 		} catch (err) {
 			return res.status(500).json(err);
